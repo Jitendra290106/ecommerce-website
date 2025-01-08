@@ -48,3 +48,46 @@ checkoutButton.addEventListener('click',() => {
     cart = []; //Clear the cart
     updateCart();
 });
+// scripts.js
+
+// Function to show the Add Product form
+function showAddProductForm() {
+    document.getElementById('add-product-form').style.display = 'block';
+}
+
+// Function to close the Add Product form
+function closeAddProductForm() {
+    document.getElementById('add-product-form').style.display = 'none';
+}
+
+// Function to handle the form submission and add a new product to the page
+document.getElementById('product-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    // Get form values
+    const name = document.getElementById('product-name').value;
+    const description = document.getElementById('product-description').value;
+    const price = document.getElementById('product-price').value;
+    const stock = document.getElementById('product-stock').value;
+
+    // Create a new product element
+    const newProduct = document.createElement('div');
+    newProduct.classList.add('product');
+
+    newProduct.innerHTML = `
+        <img src="https://via.placeholder.com/150" alt="${name}">
+        <h3>${name}</h3>
+        <p>${description}</p>
+        <p>Price: $${price}</p>
+        <p>Stock: ${stock}</p>
+    `;
+
+    // Append the new product to the product list
+    document.getElementById('product-list').appendChild(newProduct);
+
+    // Clear the form
+    document.getElementById('product-form').reset();
+
+    // Close the form after submission
+    closeAddProductForm();
+});
